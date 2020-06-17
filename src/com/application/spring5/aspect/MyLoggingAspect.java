@@ -12,11 +12,30 @@ public class MyLoggingAspect {
 	
 	//@Before advice	
 	//-----------------------------
-	@Before("execution (public void addAccount())")
+	/*@Before("execution (public void addAccount())")
 	public void beforeAddAdvice() {
 		System.out.println("\n===>>> Executing @Before advice on addAccount()");
-  	} 
+  	} */
  	
- 
-
+  // To call only from Account class
+  //---------------------------------
+	/*@Before("execution (public void com.application.spring5.dao.AccountDAO.addAccount())")
+	public void beforeAddAdvice() {
+		System.out.println("\n===>>> Executing @Before advice on addAccount()");
+  	} */
+	
+	//PointCut wild card
+	//---------------------
+	/*@Before("execution (public void add*())")
+	public void beforeAddAdvice() {
+		System.out.println("\n===>>> Executing @Before advice on add*()");
+  	}*/
+	
+   // pointcut match with return type
+	//---------------------------------
+	
+	@Before("execution (* add*())")
+	public void beforeAddAdvice() {
+		System.out.println("\n===>>> Executing @Before advice on add*()");
+  	}
 }
