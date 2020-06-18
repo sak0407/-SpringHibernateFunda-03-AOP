@@ -112,6 +112,8 @@ public class MyLoggingAspect {
 	// dont want to apply advice on getter and setter
 	//---------------------------------------------------
 	
+	/*
+	
 	@Pointcut("execution (* com.application.spring5.dao.*.*(..))")
 	private void forDaoPackage() {}
 	
@@ -134,28 +136,43 @@ public class MyLoggingAspect {
 		System.out.println("\n==2=>>> Performing New Advice Work");
 	}
 	
+	*/
 	
+	//---------------------------------------
+	//Controlling the order of aspects
+	// Here order will be Undefined
+	//Next step ---do code refactoring
+	//---------------------------------------
 	
+	/*
+	@Pointcut("execution (* com.application.spring5.dao.*.*(..))")
+	private void forDaoPackage() {}
 	
+	@Pointcut("execution (* com.application.spring5.dao.*.get*(..))")
+	private void getter() {}
 	
+	@Pointcut("execution (* com.application.spring5.dao.*.set*(..))")
+	private void setter() {}
 	
+	@Pointcut("forDaoPackage() && !(getter()||setter())")
+	private void forDaoPackageExcludingGetSet() {}
 	
+	@Before("forDaoPackageExcludingGetSet()")
+	public void logAdvice() {
+		System.out.println("\n==1=>>> Executing @Before advice on add*()");
+  	}
 	
+	@Before("forDaoPackageExcludingGetSet()")
+	public void performApiAdvice() {
+		System.out.println("\n==2=>>> Performing New Advice Work");
+	}
 	
+	@Before("forDaoPackageExcludingGetSet()")
+	public void loggingCloudAdvice() {
+		System.out.println("\n==3=>>> Logging cloud  advice");
+	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	*/
 	
 	
 }	
