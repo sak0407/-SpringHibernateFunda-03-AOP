@@ -23,6 +23,8 @@ public class MainAOP {
 		//call the business method
 		//theAccountDAO.addAccount();
 		Account myAccount=new Account();
+		myAccount.setName("Wells");
+		myAccount.setLevel("Fargo");
 		theAccountDAO.addAccount(myAccount,true);
 		
 		theMemberShipDAO.addAccount();
