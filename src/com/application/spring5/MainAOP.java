@@ -31,7 +31,11 @@ public class MainAOP {
 		theMemberShipDAO.goToSleep();
 		
 		
-		
+		//call the getter /setter methods		
+		theAccountDAO.setName("Selim");
+		theAccountDAO.setService("Silver");
+		theAccountDAO.getName();
+		theAccountDAO.getService();
 		
 		//close the context
 		context.close();

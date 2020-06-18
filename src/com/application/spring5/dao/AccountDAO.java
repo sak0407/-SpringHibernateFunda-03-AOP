@@ -6,14 +6,40 @@ import com.application.spring5.Account;
 
 @Component
 public class AccountDAO {
+	
+	private String name;
+	private String service;
+	
+		
+	public String getName() {
+		System.out.println("In getName");
+		return name;
+	}
 
+	public void setName(String name) {
+		System.out.println("In setName");
+		this.name = name;
+	}
+
+	public String getService() {
+		System.out.println("In getService");
+		return service;
+	}
+
+	public void setService(String service) {
+		System.out.println("In setService");
+		this.service = service;
+	}
+	
+	
+	
 	
 	//public void addAccount() {
-		//	System.out.println(getClass()+":DOING DB WORK :ADDING AN ACCOUNT");
-		//}
-		
+			//	System.out.println(getClass()+":DOING DB WORK :ADDING AN ACCOUNT");
+			//}
+
 		public void addAccount(Account theAccount,boolean vipFlag) {
-			System.out.println(getClass()+":DOING DB WORK :ADDING AN ACCOUNT");
+			System.out.println(getClass()+":ADDING AN ACCOUNT");
 		}
 		
 		public boolean addMember() {

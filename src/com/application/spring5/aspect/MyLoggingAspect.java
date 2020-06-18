@@ -42,27 +42,33 @@ public class MyLoggingAspect {
    // Pointcut match with return type
 	//---------------------------------
 	
-	/*@Before("execution (* add*())")
+	/*
+	@Before("execution (* add*())")
 	public void beforeAddAdvice() {
 		System.out.println("\n===>>> Executing @Before advice on add*()");
-  	}*/
+  	}
+  	*/
 	
 	//Match on method parameters
 	//---------------------------
 		
-	/*@Before("execution (* add*(com.application.spring5.Account))")
+	/*
+	@Before("execution (* add*(com.application.spring5.Account))")
 	public void beforeAddAdvice() {
 		System.out.println("\n===>>> Executing @Before advice on add*()");
-  	}*/
+  	}
+  	*/
 	
 	
 	//Match on method parameters with any no of arguments(using wildcards)
 	//--------------------------------------------------------------------
 	
-	/*@Before("execution (* add*(com.application.spring5.Account,..))")
+	/*
+	@Before("execution (* add*(com.application.spring5.Account,..))")
 	public void beforeAddAdvice() {
 		System.out.println("\n===>>> Executing @Before advice on add*()");
-  	}*/
+  	}
+  	*/
 	
 	/*@Before("execution (* add*(..))")
 	public void beforeAddAdvice() {
@@ -73,16 +79,19 @@ public class MyLoggingAspect {
 	//Match on package
 	//----------------
 	
-	/*@Before("execution (* com.application.spring5.dao.*.*(..))")
+	/*
+	@Before("execution (* com.application.spring5.dao.*.*(..))")
 	public void beforeAddAdvice() {
 		System.out.println("\n===>>> Executing @Before advice on add*()");
-  	}*/
+  	}
+  	*/
 	
 	
 	//----------------------------------------------------------
 	//PointCut Declaration
 	//----------------------------------------------------------
 	
+	/*
 	@Pointcut("execution (* com.application.spring5.dao.*.*(..))")
 	private void forDaoPackage() {}
 	
@@ -97,12 +106,33 @@ public class MyLoggingAspect {
 		System.out.println("\n==2=>>> Performing New Advice Work");
 	}
 	
-	
+	*/
 	//---------------------------------------------------
-	//Apply multiple pointcut expressins to single advice
+	//Apply multiple pointcut expressions to single advice
+	// dont want to apply advice on getter and setter
 	//---------------------------------------------------
 	
+	@Pointcut("execution (* com.application.spring5.dao.*.*(..))")
+	private void forDaoPackage() {}
 	
+	@Pointcut("execution (* com.application.spring5.dao.*.get*(..))")
+	private void getter() {}
+	
+	@Pointcut("execution (* com.application.spring5.dao.*.set*(..))")
+	private void setter() {}
+	
+	@Pointcut("forDaoPackage() && !(getter()||setter())")
+	private void forDaoPackageExcludingGetSet() {}
+	
+	@Before("forDaoPackageExcludingGetSet()")
+	public void beforeAddAdvice() {
+		System.out.println("\n==1=>>> Executing @Before advice on add*()");
+  	}
+	
+	@Before("forDaoPackageExcludingGetSet()")
+	public void performApi() {
+		System.out.println("\n==2=>>> Performing New Advice Work");
+	}
 	
 	
 	
