@@ -16,14 +16,19 @@ public class MainAOP {
 		
 		
 		//get the bean from spring container
-		AccountDAO theAccountDAO=context.getBean("accountDAO",AccountDAO.class);
-		MemberShipDAO theMemberShipDAO=context.getBean("memberDAO",MemberShipDAO.class);
-		
+				AccountDAO theAccountDAO=context.getBean("accountDAO",AccountDAO.class);
+				MemberShipDAO theMemberShipDAO=context.getBean("memberDAO",MemberShipDAO.class);
+				
 		
 		//call the business method
-		theAccountDAO.addAccount();
+		//theAccountDAO.addAccount();
+		Account myAccount=new Account();
+		theAccountDAO.addAccount(myAccount,true);
+		
 		theMemberShipDAO.addAccount();
 		theAccountDAO.addMember();
+		theAccountDAO.doWork();
+		theMemberShipDAO.goToSleep();
 		
 		
 		
