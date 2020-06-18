@@ -21,9 +21,14 @@ public class MainAOP {
 		
 		
 		//call the business method
-		theAccountDAO.addAccount();
+		//theAccountDAO.addAccount();
+		Account myAccount=new Account();
+		theAccountDAO.addAccount(myAccount,true);
+		
 		theMemberShipDAO.addAccount();
 		theAccountDAO.addMember();
+		theAccountDAO.doWork();
+		theMemberShipDAO.goToSleep();
 		
 		
 		
