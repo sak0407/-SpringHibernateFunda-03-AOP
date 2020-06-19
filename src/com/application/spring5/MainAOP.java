@@ -52,6 +52,23 @@ public class MainAOP {
 		System.out.println("\n");
 		
 		System.out.println("----------------------------------------------------");
+		System.out.println("-------------After Throwing Advice-----------------");
+		System.out.println("----------------------------------------------------");
+		//After returning advice main method execution 
+		List<Account> theAccounts1= null;
+		try {
+			//add a boolean flag to simulate exceptions 
+			boolean tripWire = true;
+			
+			theAccounts1=theAccountDAO.findAccountsWithException(tripWire);
+		}catch (Exception e) {
+			System.out.println(" -- > Main programm ..caught exception "+e);
+		}
+		
+		System.out.println("From main => "+theAccounts1);
+		System.out.println("\n");
+		
+		System.out.println("----------------------------------------------------");
 		System.out.println("----------------------------------------------------");
 		
 		//close the context

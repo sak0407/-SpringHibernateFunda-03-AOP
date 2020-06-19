@@ -67,6 +67,21 @@ public class AccountDAO {
 			
 			return myAccounts;
 		}
+
+		public List<Account> findAccountsWithException(boolean tripWire) {
+			
+			if(tripWire) {
+				throw new RuntimeException("Exception raised from Account DAO");
+			}
+			
+			List<Account> myAccounts = new ArrayList<Account>();
+			
+			myAccounts.add(new Account("Sam","Gold"));
+			myAccounts.add(new Account("Suresh","Bronze"));
+			myAccounts.add(new Account("Ramesh","Silver"));
+			
+			return myAccounts;
+		}
 }
 
 

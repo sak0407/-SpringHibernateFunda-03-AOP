@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
+import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.reflect.MethodSignature;
@@ -68,7 +69,7 @@ public class LogAspect {
 		System.out.println("\n====>>> Executing @AfterReturning advice on " +methodString);
 		
 		
-		System.out.println("\n====>>> Result is : "+resultY);
+		System.out.println("\n----->> Result is : "+resultY);
 		
 		System.out.println(" -- ------------------------ --");
 		
@@ -101,6 +102,25 @@ public class LogAspect {
 		}
 		
 	}
+	
+	//After Throwing Advice ,On find Accounts mathod
+	//---------------------------------------------------------
+		
+		@AfterThrowing(pointcut ="execution (* com.application.spring5.dao.AccountDAO.findAccountsWithException(..) )",throwing = "excepTn")
+		public void afterThrowingFindAccountsAdvice(JoinPoint joinPoint,Throwable excepTn) {
+		
+			//print out which method we are advising on
+			String methodString =joinPoint.getSignature().toShortString();
+			
+			System.out.println("\n====>>> Executing @AfterThrowing advice on " +methodString);
+			
+
+			//log the exception
+			
+			System.out.println("\n----->>> The Exception is " +excepTn);
+			
+			
+		}
 
 }
 
