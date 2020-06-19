@@ -1,5 +1,8 @@
 package com.application.spring5.dao;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Component;
 
 import com.application.spring5.Account;
@@ -51,4 +54,46 @@ public class AccountDAO {
 			System.out.println(getClass()+":Doing work");
 			return true;
 		}
+		
+		
+		
+		public List<Account> findAccounts(){
+			
+			List<Account> myAccounts = new ArrayList<Account>();
+			
+			myAccounts.add(new Account("Sam","Gold"));
+			myAccounts.add(new Account("Suresh","Bronze"));
+			myAccounts.add(new Account("Ramesh","Silver"));
+			
+			return myAccounts;
+		}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

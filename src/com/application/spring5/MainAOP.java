@@ -1,5 +1,7 @@
 package com.application.spring5;
 
+import java.util.List;
+
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
 import com.application.spring5.dao.AccountDAO;
@@ -39,8 +41,47 @@ public class MainAOP {
 		theAccountDAO.getName();
 		theAccountDAO.getService();
 		
+		System.out.println("----------------------------------------------------");
+		System.out.println("-------------After Returning Advice-----------------");
+		System.out.println("----------------------------------------------------");
+		//After returning advice main method execution 
+		
+		List<Account> theAccounts=theAccountDAO.findAccounts();
+		
+		System.out.println("From main => "+theAccounts);
+		System.out.println("\n");
+		
+		System.out.println("----------------------------------------------------");
+		System.out.println("----------------------------------------------------");
+		
 		//close the context
 		context.close();
 	}
 
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

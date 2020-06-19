@@ -1,6 +1,9 @@
 package com.application.spring5.aspect;
 
+import java.util.List;
+
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.reflect.MethodSignature;
@@ -52,6 +55,52 @@ public class LogAspect {
 		
 		
   	}
+	
+	
+	//After Returning Advice ,On find Accounts mathod
+	//---------------------------------------------------------
+	
+	@AfterReturning(pointcut ="execution (* com.application.spring5.dao.AccountDAO.findAccounts(..) )",returning = "resultY")
+	public void afterreturningFindAccountsAdvice(JoinPoint joinPoint,List<Account> resultY) {
+		
+		String methodString =joinPoint.getSignature().toShortString();
+		
+		System.out.println("\n====>>> Executing @AfterReturning advice on " +methodString);
+		
+		
+		System.out.println("\n====>>> Result is : "+resultY);
+		
+		System.out.println(" -- ------------------------ --");
+		
+		System.out.println(" : Post Proccessing of data :");
+		
+		if(!resultY.isEmpty()) {
+			Account tempAccount=resultY.get(0);
+			tempAccount.setName("Ram");
+		}
+		
+		System.out.println("\n====>>>Modified result is : "+resultY);
+		
+		System.out.println(" -- ------------------------ --");
+		
+		System.out.println(" : Convert the names to upddercase :");
+		
+		convertAccountNamestoUppercase(resultY);
+		
+		System.out.println("\n====>>>Modified result is : "+resultY);
+		
+	}
+
+
+	private void convertAccountNamestoUppercase(List<Account> resultY) {
+		
+		for(Account theAccount:resultY) {
+			String theUssernameString=theAccount.getName().toUpperCase();
+			
+			theAccount.setName(theUssernameString);
+		}
+		
+	}
 
 }
 
