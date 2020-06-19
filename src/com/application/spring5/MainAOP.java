@@ -20,7 +20,10 @@ public class MainAOP {
 		//get the bean from spring container
 				AccountDAO theAccountDAO=context.getBean("accountDAO",AccountDAO.class);
 				MemberShipDAO theMemberShipDAO=context.getBean("memberDAO",MemberShipDAO.class);
-				
+		
+		System.out.println("----------------------------------------------------");
+		System.out.println("-------------Before Advice------------------");
+		System.out.println("----------------------------------------------------");
 		
 		//call the business method
 		//theAccountDAO.addAccount();
@@ -66,6 +69,26 @@ public class MainAOP {
 		}
 		
 		System.out.println("From main => "+theAccounts1);
+		System.out.println("\n");
+		
+
+		
+		System.out.println("----------------------------------------------------");
+		System.out.println("-------------After(Finally)Advice-----------------");
+		System.out.println("----------------------------------------------------");
+		//After returning advice main method execution 
+		List<Account> theAccounts2= null;
+		try {
+			//add a boolean flag to simulate exceptions 
+			//boolean tripWire = true; //Failure case
+			boolean tripWire = false;  //Success case
+			
+			theAccounts2=theAccountDAO.findAccountsWithAfter(tripWire);
+		}catch (Exception e) {
+			System.out.println(" -- > Main programm ..caught exception "+e);
+		}
+		
+		System.out.println("From main => "+theAccounts2);
 		System.out.println("\n");
 		
 		System.out.println("----------------------------------------------------");

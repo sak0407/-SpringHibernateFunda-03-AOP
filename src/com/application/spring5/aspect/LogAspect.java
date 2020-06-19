@@ -3,6 +3,7 @@ package com.application.spring5.aspect;
 import java.util.List;
 
 import org.aspectj.lang.JoinPoint;
+import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
@@ -121,6 +122,25 @@ public class LogAspect {
 			
 			
 		}
+		
+		//After Advice ,Its kind of finnaly Advice,which run must and before throwing excep.
+		//----------------------------------------------------------------------------------
+			
+			@After("execution (* com.application.spring5.dao.AccountDAO.findAccountsWithAfter(..) )")
+			public void afterFinnllyFindAccountsAdvice(JoinPoint joinPoint) {
+			
+				//print out which method we are advising on
+				String methodString =joinPoint.getSignature().toShortString();
+				
+				System.out.println("\n====>>> Executing @After(Finally) advice on " +methodString);
+				
+
+				//log the exception
+				
+				System.out.println("\n----->>> The Exception is " +methodString);
+				
+				
+			}	
 
 }
 
